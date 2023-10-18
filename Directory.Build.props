@@ -1,0 +1,67 @@
+<Project>
+    <!-- General project info -->
+    <PropertyGroup>
+        <Title>Multi-Remote Next Generation Connection Manager</Title>
+        <RepositoryUrl>https://github.com/mRemoteNG/mRemoteNG.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <Version>1.77.3-dev</Version>
+        <Description>Multi-protocol remote connections manager</Description>
+        <PackageIcon>Header_dark.png</PackageIcon>
+        <Copyright>$([System.DateTime]::Now.Year) mRemoteNG Dev Team, 2010-2013 Riley McArdle, 2007-2009 Felix Deimel</Copyright>
+        <PackageLicenseFile>COPYING.TXT</PackageLicenseFile>
+        <PackageProjectUrl>https://mremoteng.org/</PackageProjectUrl>
+    </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows7.0</TargetFramework>
+        <Platforms>x64</Platforms>
+        <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Configurations>Debug;Release;Debug Portable;Debug Installer;Release Portable;Release Installer;Release Installer and Portable</Configurations>
+    </PropertyGroup>
+    <PropertyGroup>
+        <RestoreIgnoreFailedSource>true</RestoreIgnoreFailedSource> <!-- If true, ignores failing or missing package sources -->
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <GenerateDocumentationFile>false</GenerateDocumentationFile>
+        <!-- error and warnings options, see https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-options/errors-warnings -->
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <WarningLevel>4</WarningLevel>
+        <AnalysisLevel>latest</AnalysisLevel>
+        <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+        <CodeAnalysisTreatWarningsAsErrors>false</CodeAnalysisTreatWarningsAsErrors>
+        <WarningsAsErrors>$(WarningsAsErrors);NU1603;NU1605</WarningsAsErrors>
+        <NoWarn>$(NoWarn);NU5104;NU1608;1701;1702;1591</NoWarn>
+    </PropertyGroup>
+    <PropertyGroup>
+        <!-- custom mRemoteNG properties-->
+        <!-- ## default values if not provided from command line -->
+        <DefaultProjectRootDir>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'mRemoteNG.sln'))</DefaultProjectRootDir>
+		<DefaultArtifactsDir>$([System.IO.Path]::Combine($(DefaultProjectRootDir), 'publish'))</DefaultArtifactsDir>
+        <DefaultToolsDir>$([System.IO.Path]::Combine($(DefaultProjectRootDir), 'Tools'))</DefaultToolsDir>
+        <!-- ## properties setup with fallback to default values, to be used in the build -->
+        <!-- #### Path to the root directory (where mRemoteNG.sln is) -->
+		<ProjectRootDir Condition="'$(ProjectRootDir)' == ''">$(DefaultProjectRootDir)</ProjectRootDir>
+        <!-- #### Path to the /publish folder, where all build artifacts are stored for further usage and process -->
+        <ArtifactsDir Condition="'$(ArtifactsDir)' == ''">$(DefaultArtifactsDir)</ArtifactsDir>
+        <!-- #### Path to the /tools folder -->
+        <ToolsDir Condition="'$(ToolsDir)' == ''">$(DefaultToolsDir)</ToolsDir>
+    </PropertyGroup>
+    <ItemGroup>
+        <!-- shared packages -->
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    </ItemGroup>
+    <ItemGroup>
+        <!-- shared analyzers -->
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.12.0.78982 ">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.507" PrivateAssets="All" />
+        <PackageReference Include="Roslynator.Analyzers" Version="4.5.0" PrivateAssets="All" />
+        <PackageReference Include="AsyncFixer" Version="1.6.0">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+</Project>

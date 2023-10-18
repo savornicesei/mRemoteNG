@@ -1,74 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <AssemblyName>mRemoteNG</AssemblyName>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows7.0</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>Icons\mRemoteNG.ico</ApplicationIcon>
-    <Version>1.77.3-dev</Version>
-    <Description>Multi-protocol remote connections manager</Description>
-    <Copyright>$([System.DateTime]::Now.Year) mRemoteNG Dev Team, 2010-2013 Riley McArdle, 2007-2009 Felix Deimel</Copyright>
-    <PackageLicenseFile>COPYING.TXT</PackageLicenseFile>
-    <PackageProjectUrl>https://mremoteng.org/</PackageProjectUrl>
-    <Platforms>x64</Platforms>
-    <Configurations>Debug;Release;Debug Portable;Release Portable;Release Installer</Configurations>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <LangVersion>latest</LangVersion>
-    <PackageIcon>Header_dark.png</PackageIcon>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UseWPF>True</UseWPF>
-    <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
     <SignAssembly>False</SignAssembly>
-    <Title>Multi-Remote Next Generation Connection Manager</Title>
-    <RepositoryUrl>https://github.com/mRemoteNG/mRemoteNG.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
     <StartupObject>mRemoteNG.App.ProgramRoot</StartupObject>
     <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
     <UserSecretsId>1307e3e3-38d6-41ee-8301-0a9bae87038b</UserSecretsId>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <DefineConstants>DEBUG</DefineConstants>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <WarningsAsErrors />
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
-    <Optimize>False</Optimize>
-    <WarningLevel>7</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <DefineConstants />
-    <Optimize>True</Optimize>
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <WarningsAsErrors />
-    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
-    <WarningLevel>7</WarningLevel>
-    <ResolveComReferenceSilent>True</ResolveComReferenceSilent>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Portable|x64'">
-    <DefineConstants>DEBUG;PORTABLE</DefineConstants>
-    <Optimize>False</Optimize>
-    <OutputPath>bin\x64\Debug Portable\</OutputPath>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <WarningsAsErrors />
-    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
-    <WarningLevel>7</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Portable|x64'">
-    <DefineConstants>PORTABLE</DefineConstants>
-    <Optimize>True</Optimize>
-    <OutputPath>bin\x64\Release Portable\</OutputPath>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <WarningsAsErrors />
-    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
-    <WarningLevel>7</WarningLevel>
-    <ResolveComReferenceSilent>True</ResolveComReferenceSilent>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Installer|x64'">
-    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
-    <Optimize>True</Optimize>
-    <WarningLevel>7</WarningLevel>
-    <ResolveComReferenceSilent>True</ResolveComReferenceSilent>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="buildenv.tmp" />
@@ -89,7 +31,6 @@
     <PackageReference Include="Castle.Core" Version="5.1.1" />
     <PackageReference Include="ConsoleControl" Version="1.3.0" />
     <PackageReference Include="ConsoleControlAPI" Version="1.3.0" />
-    <PackageReference Include="Cucumber.Messages" Version="21.0.1" />
     <PackageReference Include="DockPanelSuite" Version="3.1.0" />
     <PackageReference Include="DockPanelSuite.ThemeVS2003" Version="3.1.0" />
     <PackageReference Include="DockPanelSuite.ThemeVS2005" Version="3.1.0" />
@@ -103,12 +44,9 @@
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2088.41" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
     <PackageReference Include="MySql.Data" Version="8.1.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="ObjectListView.Updated" Version="2.9.3" />
-    <PackageReference Include="OpenCover" Version="4.7.1221" />
     <PackageReference Include="Portable.BouncyCastle" Version="1.9.0" />
     <PackageReference Include="Renci.SshNet.Async" Version="1.4.0" />
-    <PackageReference Include="ReportGenerator" Version="5.1.26" />
     <PackageReference Include="SSH.NET" Version="2023.0.0" />
     <PackageReference Include="System.Data.Common" Version="4.3.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />

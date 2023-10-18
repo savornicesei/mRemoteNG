@@ -1,0 +1,60 @@
+<Project>
+    <!-- This MSBuild file is executed after loading each MSBuild project from .sln -->
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+        <DefineConstants>DEBUG</DefineConstants>
+        <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+        <WarningsAsErrors />
+        <OutputPath>bin\x64\Debug\</OutputPath>
+        <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+        <Optimize>False</Optimize>
+        <WarningLevel>7</WarningLevel>
+      </PropertyGroup>
+      <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+        <DefineConstants>RELEASE</DefineConstants>
+        <Optimize>True</Optimize>
+        <OutputPath>bin\x64\Release\</OutputPath>
+        <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+        <WarningsAsErrors />
+        <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+        <WarningLevel>7</WarningLevel>
+        <ResolveComReferenceSilent>True</ResolveComReferenceSilent>
+      </PropertyGroup>
+      <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Portable|x64'">
+        <DefineConstants>DEBUG;PORTABLE</DefineConstants>
+        <Optimize>False</Optimize>
+        <OutputPath>bin\x64\Debug Portable\</OutputPath>
+        <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+        <WarningsAsErrors />
+        <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+        <WarningLevel>7</WarningLevel>
+      </PropertyGroup>
+      <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Portable|x64'">
+        <DefineConstants>RELEASE;PORTABLE</DefineConstants>
+        <Optimize>True</Optimize>
+        <OutputPath>bin\x64\Release Portable\</OutputPath>
+        <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+        <WarningsAsErrors />
+        <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+        <WarningLevel>7</WarningLevel>
+        <ResolveComReferenceSilent>True</ResolveComReferenceSilent>
+      </PropertyGroup>
+      <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Installer|x64'">
+        <DefineConstants>RELEASE;INSTALLER</DefineConstants>
+        <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+        <Optimize>True</Optimize>
+        <WarningLevel>7</WarningLevel>
+        <ResolveComReferenceSilent>True</ResolveComReferenceSilent>
+      </PropertyGroup>
+
+      <!-- Allow internal members from application to be accesible in tests -->
+      <ItemGroup Condition="'$(ProjectName)' == 'mRemoteNG' or '$(ProjectName)' == 'ExternalConnectors'">
+        <InternalsVisibleTo Include="mRemoteNGTests" />
+        <InternalsVisibleTo Include="mRemoteNGSpecs" />
+      </ItemGroup>
+
+    <!-- Just prints MSBuild props, for build process testing -->
+    <Target Name="ConfigPrint">
+        <Message Text="Configuration: $(Configuration), RootDir: $(ProjectRootDir), ArtifactsDir: $(ArtifactsDir)" Importance="high" />
+        <Message Text="DebugSymbols: $(DebugSymbols), DebugType: $(DebugType), Optimize: $(Optimize)" Importance="high" />
+    </Target>
+</Project>

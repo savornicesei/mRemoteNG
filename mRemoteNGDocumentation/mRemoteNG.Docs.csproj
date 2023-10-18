@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <AssemblyName>mRemoteNG.Docs</AssemblyName>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <NuGetExe>$([System.IO.Path]::Combine($(ToolsDir), 'exes', 'nuget.exe'))</NuGetExe>
+        <PythonLocalDir>$([System.IO.Path]::Combine($(ToolsDir), '.local.exes'))</PythonLocalDir>
+        <PythonExe>python</PythonExe>
+    </PropertyGroup>
+
+    <!-- installs python locally, using the official NuGet python package
+    see https://docs.python.org/3.13/using/windows.html#the-nuget-org-packages -->
+    <Target Name="InstallPythonLocal">
+        <MakeDir Directories="$(PythonLocalDir)"/>
+        
+        <Exec Command="$(NuGetExe) install python -ExcludeVersion -OutputDirectory $(PythonLocalDir)" IgnoreStandardErrorWarningFormat="true" />
+
+        <PropertyGroup>
+            <PythonExe>$([System.IO.Path]::Combine($(PythonLocalDir),'python', 'python.exe'))</PythonExe>
+        </PropertyGroup>
+    </Target>
+
+    <Target Name="InstallSphinx" BeforeTargets="BeforeBuild">
+        <Message Text="Detecting python" Importance="High" />
+        <Exec Command="python -V" ConsoleToMSBuild="true">
+            <Output TaskParameter="ConsoleOutput" PropertyName="SystemPythonVersion" />
+        </Exec>
+        
+        <CallTarget Targets="InstallPythonLocal" Condition="! $(SystemPythonVersion.StartsWith('Python'))"/>
+
+        <Message Text="Setting up sphinx using '$(PythonExe)' in $(ProjectDir)" Importance="High" />
+        <Exec Command="$(PythonExe) -m pip install sphinx --user" WorkingDirectory="$(ProjectDir)" IgnoreStandardErrorWarningFormat="true" />
+        <Exec Command="sphinx-build --version" WorkingDirectory="$(ProjectDir)" IgnoreStandardErrorWarningFormat="true" />
+    </Target>
+
+    <Target Name="BuildDocs" AfterTargets="AfterBuild">
+        <Message Text="Building docs with sphinx" Importance="High" />
+        <Exec Command="sphinx-build -M html source/ $(ArtifactsDir)/docs" WorkingDirectory="$(ProjectDir)" IgnoreStandardErrorWarningFormat="true" />
+    </Target>
+
+</Project>

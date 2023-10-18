@@ -2,6 +2,14 @@
 **/obj/
 **/[Rr]elease [Pp]ortable/
 **/[Dd]ebug [Pp]ortable/
+/[Rr]eports/
+.sonarqube
+NDependOut
+NDependOut*
+coverage
+*.runlog
+.local.msbuild.props*
+/Tools/.local.exes/
 
 *.pfx
 Thumbs.db
