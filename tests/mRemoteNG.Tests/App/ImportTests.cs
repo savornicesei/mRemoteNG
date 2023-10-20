@@ -1,5 +1,4 @@
-﻿using System.IO;
-using mRemoteNG.App;
+﻿using mRemoteNG.App;
 using mRemoteNG.Config.Putty;
 using mRemoteNG.Connection;
 using mRemoteNG.Container;

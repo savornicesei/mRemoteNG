@@ -1,0 +1,12 @@
+<Project>
+  <!-- continue loading the rest of Directory.Build.props files in the directory hierarchy -->
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)..\'))" />
+
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
+  </ItemGroup>
+  
+  <ItemGroup>
+      <PackageReference Include="Ardalis.GuardClauses" Version="4.1.1" />
+  </ItemGroup>
+</Project>
